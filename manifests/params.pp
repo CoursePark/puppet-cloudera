@@ -88,13 +88,13 @@ class cloudera::params {
   $cdh_version = '4'
   $cm_version  = '4'
   $ci_version  = '1'
-  $::os_maj_version = inline_template('<%= operatingsystemrelease[0,1] %>')
+  $os_maj_version = inline_template('<%= operatingsystemrelease[0,1] %>')
 
   case $::operatingsystem {
     'CentOS', 'RedHat', 'OEL', 'OracleLinux': {
-      $cdh_yumpath = "/cdh4/redhat/${::os_maj_version}/${::architecture}/cdh/"
-      $cm_yumpath = "/cm4/redhat/${::os_maj_version}/${::architecture}/cm/"
-      $ci_yumpath = "/impala/redhat/${::os_maj_version}/${::architecture}/impala/"
+      $cdh_yumpath = "/cdh4/redhat/${os_maj_version}/${::architecture}/cdh/"
+      $cm_yumpath = "/cm4/redhat/${os_maj_version}/${::architecture}/cm/"
+      $ci_yumpath = "/impala/redhat/${os_maj_version}/${::architecture}/impala/"
     }
     default: {
       fail("Module ${::module} is not supported on ${::operatingsystem}")
